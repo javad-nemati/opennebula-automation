@@ -1,6 +1,10 @@
 
 # opennebula-automation
 First step:
+clone the repository and enter into the ubuntu directory
+```
+https://github.com/javad-nemati/opennebula-automation.git
+```
 
 Remember: You must install the libvirt, ansible and git packages for the instalation
 
@@ -163,10 +167,7 @@ for vm section you must inform ram, vcpu and net_type for networking selection(b
 Deploying the vms
 
 
-clone the repository and enter into the ubuntu directory
-```
-https://github.com/javad-nemati/opennebula-automation.git
-```
+
 ```
 cd create-vm-kvm/ubuntu
 ansible-playbook -i inventory/hosts create-vm-kvm/ubuntu_vms-4nic.yml
@@ -178,15 +179,6 @@ ansible-playbook -i inventory/hosts create-vm-kvm/destroy.yml
 
 
 
-
-clone the repository and enter into the ubuntu directory
-```
-git clone https://github.com/javad-nemati/opennebula-automation.git
-```
-```
-cd create-vm-kvm/ubuntu
-ansible-playbook -i inventory/hosts create-vm-kvm/ubuntu_vms-4nic.yml
-```
 you can destroy the vms with :
 ```
 ansible-playbook -i inventory/hosts create-vm-kvm/destroy.yml
