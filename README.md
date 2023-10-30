@@ -23,7 +23,6 @@ virt_install.sh: the script to run and prepare the template vm, this step is int
 
 Inside of inventory/host_vars/localhost.yml you must to setup some variables(it's look like this:)
 
-const copyCodeBlock = require('@pickra/copy-code-block');
 
 
 
