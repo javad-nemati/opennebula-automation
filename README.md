@@ -39,7 +39,6 @@ Inside the inventory/host_vars/localhost.yml file, you need to set up some varia
 domain: local.lab
 dnsconfig: ok
 
->>>>>>> 71ed6afd8d54bfe5d03da8e3f3a62fe42f7bf3ba
 # Kvm session
 libvirt_dir: "/var/lib/libvirt"
 img_template: "ubuntu22.04-2"
