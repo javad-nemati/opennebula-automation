@@ -246,3 +246,9 @@ Directly using the one-deploy playbooks with the following command in the root p
 ansible-playbook -i inventory/local.yml opennebula.deploy.main
 ```
 
+Finally, we create one VM on one of our OpenNebula nodes and also assign two NICs, tagging them with VLAN 180 and VLAN 201
+We can execute this task using the following command:
+
+```
+ansible-playbook -i inventory/hosts create-vm-on-opennebula-machine/create-test-vm.yml 
+```
