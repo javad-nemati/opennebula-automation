@@ -1,0 +1,39 @@
+---
+- name: Execute Playbook on One of the OpenNebula Hosts
+  hosts: master
+  become: yes  
+  gather_facts: no
+  tasks:
+    - name: Create VM with Template
+      community.general.one_vm:
+        name: vm1
+        template: template1
+        state: present
+        wait: yes
+      delegate_to: master
+
+    - name: Get VM ID
+      community.general.one_vm_info:
+        vm: vm1
+        params:
+          - ID
+      register: vm_id
+      delegate_to: master
+
+    - name: Define NICs
+      community.general.one_nic:
+        vm: "{{ vm_id.ansible_facts.ID }}"
+        network: netlab1
+        model: virtio
+        vlan: 180
+        state: present
+      delegate_to: master
+
+    - name: Define Second NIC
+      community.general.one_nic:
+        vm: "{{ vm_id.ansible_facts.ID }}"
+        network: netlab2
+        model: virtio
+        vlan: 201
+        state: present
+      delegate_to: master
