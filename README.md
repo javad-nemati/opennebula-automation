@@ -168,4 +168,5 @@ you can destroy the vms with :
 ansible-playbook -i inventory/hosts create-vm-kvm/destroy.yml
 ```
 
+Automating OpenNebula Deployment:
 
