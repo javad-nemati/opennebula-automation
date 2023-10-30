@@ -196,7 +196,13 @@ Automating OpenNebula Deployment:
 
 Single Front-end with Local Storage: This scenario involves a single front-end hosting all the OpenNebula services and a set of hosts that act as hypervisors to run Virtual Machines (VMs). The virtual disk images are stored in local storage, with the front end hosting an image repository (image datastore). These images are subsequently transferred from the front end to the hypervisors to initiate the VMs.
 How to Use the Playbooks
+
+Once we have the repository downloaded, make sure to download the necessary dependencies by running the following command inside the repository path:
+```
+ansible-galaxy collection install -r requirements.yml
+```
 will use the inventory of a Single Front-end with Local Storage that we referenced in the previous section:
+
 ```
 ---
 all:
