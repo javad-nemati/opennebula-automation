@@ -17,7 +17,7 @@ inside of the util directory there are some files to help with:
 
 netlab1.xml: to configure the invernal libvirt network:
 ```
-virsh net-import netlab1.xml.
+virsh net-import netlab1.xml
 ```
 ```
 bash virt_install.sh
