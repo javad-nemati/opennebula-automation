@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-# opennebula-aoutomation
-=======
+
 # opennebula-automation
->>>>>>> 71ed6afd8d54bfe5d03da8e3f3a62fe42f7bf3ba
 First step:
 
 Remember: You must install the libvirt, ansible and git packages for the instalation
@@ -15,43 +12,26 @@ ansible 2.10
 
 Create the template Download the ubuntu  22 for template configuration
 
-<<<<<<< HEAD
-inside of the util directory there are some files to help with:
-
-netlab1.xml: to configure the invernal libvirt network, virsh net-import netlab1.xml.
-
-virt_install.sh: the script to run and prepare the template vm, this step is interactive with the terminal to configure everything. e.g: name, ip, hostname…
-
-Inside of inventory/host_vars/localhost.yml you must to setup some variables:
-
-
-
-[Uploading 1.txt…]()
----
-# DNS Session
-
-domain: local.lab
-
-dnsconfig: ok
-
-
-=======
 
 inside of the util directory there are some files to help with:
 
+netlab1.xml: to configure the invernal libvirt network
 
-netlab1.xml: to configure the invernal libvirt network:
 ```
 virsh net-import netlab1.xml
 ```
+
+
 ```
 bash virt_install.sh
 ```
 
+in this example, we have four network interfaces (NICs) and are creating two bonds using them
+Creating a template is entirely up to you, but let's assume that the switch ports above the machines are tagged with VLAN 180 and VLAN 20
 the script to run and prepare the template vm, this step is interactive with the terminal to configure everything. e.g: name, ip, hostname…
 
 
-Inside of inventory/host_vars/localhost.yml you must to setup some variables(it's look like this:)
+Inside the inventory/host_vars/localhost.yml file, you need to set up some variables. These variables might look like this:
 
 ```
 ---
@@ -59,7 +39,6 @@ Inside of inventory/host_vars/localhost.yml you must to setup some variables(it'
 domain: local.lab
 dnsconfig: ok
 
->>>>>>> 71ed6afd8d54bfe5d03da8e3f3a62fe42f7bf3ba
 # Kvm session
 libvirt_dir: "/var/lib/libvirt"
 img_template: "ubuntu22.04-2"
@@ -165,13 +144,12 @@ vm:
       gateway: 192.168.200.1
       dns: 192.168.200.1
 
-<<<<<<< HEAD
-=======
+
 ```
 
 
 
->>>>>>> 71ed6afd8d54bfe5d03da8e3f3a62fe42f7bf3ba
+
 
 
 img_template: the template image name without extension template_address: the ip address set to the interface
@@ -183,18 +161,23 @@ for vm section you must inform ram, vcpu and net_type for networking selection(b
 
 
 Deploying the vms
-<<<<<<< HEAD
+
+
 clone the repository and enter into the ubuntu directory
+```
 https://github.com/javad-nemati/opennebula-automation.git
+```
+```
 cd create-vm-kvm/ubuntu
 ansible-playbook -i inventory/hosts create-vm-kvm/ubuntu_vms-4nic.yml
+```
 you can destroy the vms with :
-
+```
 ansible-playbook -i inventory/hosts create-vm-kvm/destroy.yml
+```
 
 
 
-=======
 
 clone the repository and enter into the ubuntu directory
 ```
@@ -213,7 +196,13 @@ Automating OpenNebula Deployment:
 
 Single Front-end with Local Storage: This scenario involves a single front-end hosting all the OpenNebula services and a set of hosts that act as hypervisors to run Virtual Machines (VMs). The virtual disk images are stored in local storage, with the front end hosting an image repository (image datastore). These images are subsequently transferred from the front end to the hypervisors to initiate the VMs.
 How to Use the Playbooks
+
+Once we have the repository downloaded, make sure to download the necessary dependencies by running the following command inside the repository path:
+```
+ansible-galaxy collection install -r requirements.yml
+```
 will use the inventory of a Single Front-end with Local Storage that we referenced in the previous section:
+
 ```
 ---
 all:
@@ -232,21 +221,21 @@ all:
           BRIDGE: br0
           AR:
             TYPE: IP4
-            IP: 172.20.0.100
+            IP: 192.168.200.100
             SIZE: 48
-          NETWORK_ADDRESS: 172.20.0.0
+          NETWORK_ADDRESS: 192.168.200.0
           NETWORK_MASK: 255.255.255.0
-          GATEWAY: 172.20.0.1
+          GATEWAY: 192.168.200.1
           DNS: 1.1.1.1
 
 frontend:
   hosts:
-    fe1: { ansible_host: 172.20.0.7 }
+    fe1: { ansible_host: 192.168.200.14 }
 
 node:
   hosts:
-    node1: { ansible_host: 172.20.0.8 }
-    node2: { ansible_host: 172.20.0.9 }
+    node1: { ansible_host: 192.168.200.10 }
+    node2: { ansible_host: 192.168.200.12 }
 
 ```
 
@@ -254,6 +243,6 @@ To use one deploy with the above inventory, there are two possible ways:
 
 Directly using the one-deploy playbooks with the following command in the root path of the repository:
 ```
-ansible-playbook -i inventory/example.yml opennebula.deploy.main
+ansible-playbook -i inventory/local.yml opennebula.deploy.main
 ```
->>>>>>> 71ed6afd8d54bfe5d03da8e3f3a62fe42f7bf3ba
+
