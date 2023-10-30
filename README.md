@@ -6,6 +6,8 @@ Version of packages:
 
 libvirt 8
 ansible 2.10
+
+
 Create the template Download the ubuntu  22 for template configuration
 inside of the util directory there are some files to help with:
 
