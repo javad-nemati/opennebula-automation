@@ -11,24 +11,25 @@ ansible 2.10
 
 Create the template Download the ubuntu  22 for template configuration
 
+
 inside of the util directory there are some files to help with:
+
 
 netlab1.xml: to configure the invernal libvirt network, virsh net-import netlab1.xml.
 
+
 virt_install.sh: the script to run and prepare the template vm, this step is interactive with the terminal to configure everything. e.g: name, ip, hostname…
+
 
 Inside of inventory/host_vars/localhost.yml you must to setup some variables:
 
 
 
-[Uploading 1.txt…]()
+
 ---
 # DNS Session
-
 domain: local.lab
-
 dnsconfig: ok
-
 
 # Kvm session
 libvirt_dir: "/var/lib/libvirt"
@@ -134,6 +135,10 @@ vm:
       mask: 255.255.255.0
       gateway: 192.168.200.1
       dns: 192.168.200.1
+
+
+
+
 
 
 
