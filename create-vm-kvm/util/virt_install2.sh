@@ -1,0 +1,14 @@
+virt-install \
+--name ubuntu22.04-3 \
+--ram 2048 \
+--disk path=/var/lib/libvirt/images/ubuntu22.03.qcow2,size=20 \
+--vcpus 2 \
+--os-variant ubuntu22.04 \
+--network network=netlab1,model=virtio \
+--network network=netlab1,model=virtio \
+--network network=netlab1,model=virtio \
+--network network=netlab1,model=virtio \
+--graphics none \
+--console pty,target_type=serial \
+--location /var/lib/libvirt/images/ubuntu-22.04.3-live-server-amd64.iso,kernel=casper/vmlinuz,initrd=casper/initrd \
+--extra-args 'console=ttyS0,115200n8 serial'

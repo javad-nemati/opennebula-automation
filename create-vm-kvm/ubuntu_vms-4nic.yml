@@ -1,0 +1,82 @@
+- hosts: localhost
+  become: true
+  vars:
+    desired_port: 8443
+  tasks:
+    - name: "Check if qemu image directory does exists"
+      stat:
+        path: "{{ libvirt_dir }}/images"
+      register: imgdir
+      tags:
+        - imgdircheck
+
+    - fail:
+        msg: "{{ libvirt_dir }}/images path doesn't exist"
+      when: imgdir.stat.islnk is not defined
+      tags:
+        - imgdircheck
+
+    - name: "Check if qemu image directory does exists"
+      stat:
+        path: "{{ libvirt_dir }}/images/{{ img_template }}.qcow2"
+      register: imgfile
+      tags:
+        - imgfilecheck
+
+    - name: Check if the netplan directory exists
+      stat:
+        path: "{{ libvirt_dir }}/images/netplan"
+      register: netplandir
+
+    - name: Create the netplan directory 
+      file: 
+        path: "/var/lib/libvirt/images/netplan"
+        state: directory
+      when: netplandir.stat.islnk is not defined
+
+    - name: Image template copy
+      command: " cp -Rv {{ libvirt_dir }}/images/{{ img_template }}.qcow2 {{ libvirt_dir }}/images/{{ item.name }}.qcow2"
+      loop: "{{ vm }}"    
+      when: imgfilecheck.stat.islnk is not defined
+
+    - name: Copy netplan template script 
+      copy:
+        content: "sudo sed -i 's/{{ template_address }}/{{ item.net.ip }}/g' /etc/netplan/00-installer-config.yaml && sudo netplan apply"
+        dest: "/var/lib/libvirt/images/netplan/{{ item.name }}.netplanedit.sh"
+      loop: "{{ vm }}"
+
+    - name: customize the image to set the ip address
+      command: "virt-customize  --run /var/lib/libvirt/images/netplan/{{ item.name }}.netplanedit.sh -a  {{ libvirt_dir }}/images/{{ item.name }}.qcow2"
+      loop: "{{ vm }}"
+      tags:
+        - one
+
+    - name: "Check current virtual machines"
+      community.libvirt.virt:
+        command: list_vms 
+      register: vms
+      tags:
+        two
+
+    - name: "{{ item.name }} :: Create virtual machine "
+      shell:
+         cmd: >-
+           virt-install
+           --noautoconsole
+           --name {{ item.name }}
+           --memory {{ item.mem|default('512') }}
+           --vcpus {{ item.cpu|default('1') }}
+           --os-variant {{ osvariant }}
+           --disk {{ libvirt_dir }}/images/{{ item.name }}.qcow2,device=disk,bus=virtio
+           --os-type linux
+           --graphics none
+           --virt-type qemu
+           --network {{ item.net_type|default('network') }}={{ item.net_connector|default('default') }},model=virtio
+           --network {{ item.net_type2|default('network') }}={{ item.net_connector2|default('default') }},model=virtio
+           --network {{ item.net_type3|default('network') }}={{ item.net_connector3|default('default') }},model=virtio
+           --network {{ item.net_type4|default('network') }}={{ item.net_connector4|default('default') }},model=virtio
+           --import
+      when: item.name not in vms.list_vms
+      loop: "{{ vm }}"
+      tags:
+        - create_vm

@@ -1,0 +1,6 @@
+[kvm]
+localhost
+  Port 8443
+
+[nameserver]
+domain
