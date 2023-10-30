@@ -19,6 +19,124 @@ virt_install.sh: the script to run and prepare the template vm, this step is int
 
 Inside of inventory/host_vars/localhost.yml you must to setup some variables:
 
+
+
+[Uploading 1.txt…]()
+---
+# DNS Session
+
+domain: local.lab
+
+dnsconfig: ok
+
+
+# Kvm session
+libvirt_dir: "/var/lib/libvirt"
+img_template: "ubuntu22.04-2"
+template_address: "192.168.200.30"
+
+
+osvariant: ubuntu22.04
+vm:
+  - name: master
+    cpu: 2
+    mem: 2048
+    net_type: "network"
+    net_connector: "netlab1"
+    net:
+      ip: 192.168.200.10
+      mask: 255.255.255.0
+      gateway: 192.168.200.1
+      dns: 192.168.200.1
+
+    net_connector1: "netlab1"
+    net:
+      ip: 192.168.200.11
+      mask: 255.255.255.0
+      gateway: 192.168.200.1
+      dns: 192.168.200.1
+
+    net_connector2: "netlab1"
+    net:
+      ip: 192.168.200.12
+      mask: 255.255.255.0
+      gateway: 192.168.200.1
+      dns: 192.168.200.1
+
+    net_connector3: "netlab1"
+    net:
+      ip: 192.168.200.13
+      mask: 255.255.255.0
+      gateway: 192.168.200.1
+      dns: 192.168.200.1
+
+  - name: slave
+    cpu: 2
+    mem: 2048
+    net_type: "network"
+    net_connector: "netlab1"
+    net:
+      ip: 192.168.200.14
+      mask: 255.255.255.0
+      gateway: 192.168.200.1
+      dns: 192.168.200.1
+
+    net_connector1: "netlab1"
+    net:
+      ip: 192.168.200.15
+      mask: 255.255.255.0
+      gateway: 192.168.200.1
+      dns: 192.168.200.1
+
+    net_connector2: "netlab1"
+    net:
+      ip: 192.168.200.16
+      mask: 255.255.255.0
+      gateway: 192.168.200.1
+      dns: 192.168.200.1
+
+    net_connector3: "netlab1"
+    net:
+      ip: 192.168.200.17
+      mask: 255.255.255.0
+      gateway: 192.168.200.1
+      dns: 192.168.200.1
+
+    net_connector3: "netlab1"
+  - name: fe
+    cpu: 2
+    mem: 2048
+    net_type: "network"
+    net_connector: "netlab1"
+    net:
+      ip: 192.168.200.18
+      mask: 255.255.255.0
+      gateway: 192.168.200.1
+      dns: 192.168.200.1
+
+    net_connector1: "netlab1"
+    net:
+      ip: 192.168.200.19
+      mask: 255.255.255.0
+      gateway: 192.168.200.1
+      dns: 192.168.200.1
+
+    net_connector2: "netlab1"
+    net:
+      ip: 192.168.200.20
+      mask: 255.255.255.0
+      gateway: 192.168.200.1
+      dns: 192.168.200.1
+
+    net_connector3: "netlab1"
+    net:
+      ip: 192.168.200.21
+      mask: 255.255.255.0
+      gateway: 192.168.200.1
+      dns: 192.168.200.1
+
+
+
 img_template: the template image name without extension template_address: the ip address set to the interface
 
 
