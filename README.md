@@ -1,8 +1,5 @@
 
 # opennebula-automation
-=======
-# opennebula-automation
->>>>>>> 71ed6afd8d54bfe5d03da8e3f3a62fe42f7bf3ba
 First step:
 
 Remember: You must install the libvirt, ansible and git packages for the instalation
