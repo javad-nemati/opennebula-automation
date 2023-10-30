@@ -21,9 +21,11 @@ netlab1.xml: to configure the invernal libvirt network, virsh net-import netlab1
 virt_install.sh: the script to run and prepare the template vm, this step is interactive with the terminal to configure everything. e.g: name, ip, hostname…
 
 
-Inside of inventory/host_vars/localhost.yml you must to setup some variables:
+Inside of inventory/host_vars/localhost.yml you must to setup some variables(it's look like this:)
 
 
+
+![Uploading 2.JPG…]()
 
 
 
