@@ -27,11 +27,9 @@ Inside of inventory/host_vars/localhost.yml you must to setup some variables:
 
 
 ---
-# DNS Session
 domain: local.lab
 dnsconfig: ok
 
-# Kvm session
 libvirt_dir: "/var/lib/libvirt"
 img_template: "ubuntu22.04-2"
 template_address: "192.168.200.30"
