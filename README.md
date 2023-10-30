@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-# opennebula-aoutomation
+
+# opennebula-automation
 =======
 # opennebula-automation
 >>>>>>> 71ed6afd8d54bfe5d03da8e3f3a62fe42f7bf3ba
@@ -15,18 +15,23 @@ ansible 2.10
 
 Create the template Download the ubuntu  22 for template configuration
 
-<<<<<<< HEAD
+
 inside of the util directory there are some files to help with:
 
-netlab1.xml: to configure the invernal libvirt network, virsh net-import netlab1.xml.
+netlab1.xml: to configure the invernal libvirt network
+```
+virsh net-import netlab1.xml.
+```
+```
+bash virt_install.sh
+```
+in this example, we have four network interfaces (NICs) and are creating two bonds using them
+Creating a template is entirely up to you, but let's assume that the switch ports above the machines are tagged with VLAN 180 and VLAN 20
+the script to run and prepare the template vm, this step is interactive with the terminal to configure everything. e.g: name, ip, hostname…
 
-virt_install.sh: the script to run and prepare the template vm, this step is interactive with the terminal to configure everything. e.g: name, ip, hostname…
 
-Inside of inventory/host_vars/localhost.yml you must to setup some variables:
-
-
-
-[Uploading 1.txt…]()
+Inside the inventory/host_vars/localhost.yml file, you need to set up some variables. These variables might look like this:
+```
 ---
 # DNS Session
 
@@ -165,13 +170,13 @@ vm:
       gateway: 192.168.200.1
       dns: 192.168.200.1
 
-<<<<<<< HEAD
+
 =======
 ```
 
 
 
->>>>>>> 71ed6afd8d54bfe5d03da8e3f3a62fe42f7bf3ba
+
 
 
 img_template: the template image name without extension template_address: the ip address set to the interface
@@ -183,18 +188,23 @@ for vm section you must inform ram, vcpu and net_type for networking selection(b
 
 
 Deploying the vms
-<<<<<<< HEAD
+
+
 clone the repository and enter into the ubuntu directory
+```
 https://github.com/javad-nemati/opennebula-automation.git
+```
+```
 cd create-vm-kvm/ubuntu
 ansible-playbook -i inventory/hosts create-vm-kvm/ubuntu_vms-4nic.yml
+```
 you can destroy the vms with :
-
+```
 ansible-playbook -i inventory/hosts create-vm-kvm/destroy.yml
+```
 
 
 
-=======
 
 clone the repository and enter into the ubuntu directory
 ```
@@ -256,4 +266,4 @@ Directly using the one-deploy playbooks with the following command in the root p
 ```
 ansible-playbook -i inventory/example.yml opennebula.deploy.main
 ```
->>>>>>> 71ed6afd8d54bfe5d03da8e3f3a62fe42f7bf3ba
+
