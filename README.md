@@ -243,6 +243,6 @@ To use one deploy with the above inventory, there are two possible ways:
 
 Directly using the one-deploy playbooks with the following command in the root path of the repository:
 ```
-ansible-playbook -i inventory/example.yml opennebula.deploy.main
+ansible-playbook -i inventory/local.yml opennebula.deploy.main
 ```
 
