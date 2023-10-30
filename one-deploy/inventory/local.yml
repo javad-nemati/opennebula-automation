@@ -1,0 +1,32 @@
+---
+all:
+  vars:
+    ansible_user: opennebula
+    one_version: '6.8'
+    one_pass: pass@123
+    ds:
+      mode: ssh
+    vn:
+      admin_net:
+        managed: true
+        template:
+          VN_MAD: bridge
+          PHYDEV: eth0
+          BRIDGE: virbr1
+          AR:
+            TYPE: IP4
+            IP: 194.5.175.120
+            SIZE: 48
+          NETWORK_ADDRESS: 192.168.200.0
+          NETWORK_MASK: 255.255.255.0
+          GATEWAY: 192.168.200.1
+          DNS: 8.8.8.8
+
+frontend:
+  hosts:
+    f1: { ansible_host: 192.168.200.14 }
+
+node:
+  hosts:
+    n1: { ansible_host: 192.168.200.10 }
+    n2: { ansible_host: 192.168.200.12 }

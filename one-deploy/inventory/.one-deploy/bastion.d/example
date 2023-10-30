@@ -1,0 +1,59 @@
+
+Host b1
+  Hostname 10.11.12.10
+  User example
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  ForwardAgent yes
+
+
+# one_vip
+Host 10.11.12.69
+  Hostname 10.11.12.69
+  User example
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  ForwardAgent yes
+  ProxyJump b1
+
+
+Host 10.11.12.10
+  Hostname 10.11.12.10
+  User example
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  ForwardAgent yes
+  ProxyJump b1
+
+Host 10.11.12.20
+  Hostname 10.11.12.20
+  User example
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  ForwardAgent yes
+  ProxyJump b1
+
+Host 10.11.12.30
+  Hostname 10.11.12.30
+  User example
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  ForwardAgent yes
+  ProxyJump b1
+
+Host 10.11.12.40
+  Hostname 10.11.12.40
+  User example
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  ForwardAgent yes
+  ProxyJump b1
+
+Host 10.11.12.50
+  Hostname 10.11.12.50
+  User example
+  StrictHostKeyChecking no
+  UserKnownHostsFile /dev/null
+  ForwardAgent yes
+  ProxyJump b1
+
