@@ -170,3 +170,48 @@ ansible-playbook -i inventory/hosts create-vm-kvm/destroy.yml
 
 Automating OpenNebula Deployment:
 
+Single Front-end with Local Storage: This scenario involves a single front-end hosting all the OpenNebula services and a set of hosts that act as hypervisors to run Virtual Machines (VMs). The virtual disk images are stored in local storage, with the front end hosting an image repository (image datastore). These images are subsequently transferred from the front end to the hypervisors to initiate the VMs.
+How to Use the Playbooks
+will use the inventory of a Single Front-end with Local Storage that we referenced in the previous section:
+```
+---
+all:
+  vars:
+    ansible_user: root
+    one_version: '6.6'
+    one_pass: opennebulapass
+    ds:
+      mode: ssh
+    vn:
+      admin_net:
+        managed: true
+        template:
+          VN_MAD: bridge
+          PHYDEV: eth0
+          BRIDGE: br0
+          AR:
+            TYPE: IP4
+            IP: 172.20.0.100
+            SIZE: 48
+          NETWORK_ADDRESS: 172.20.0.0
+          NETWORK_MASK: 255.255.255.0
+          GATEWAY: 172.20.0.1
+          DNS: 1.1.1.1
+
+frontend:
+  hosts:
+    fe1: { ansible_host: 172.20.0.7 }
+
+node:
+  hosts:
+    node1: { ansible_host: 172.20.0.8 }
+    node2: { ansible_host: 172.20.0.9 }
+
+```
+
+To use one deploy with the above inventory, there are two possible ways:
+
+Directly using the one-deploy playbooks with the following command in the root path of the repository:
+```
+ansible-playbook -i inventory/example.yml opennebula.deploy.main
+```
