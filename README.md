@@ -25,7 +25,7 @@ Inside of inventory/host_vars/localhost.yml you must to setup some variables(it'
 
 
 
-![Uploading 2.JPG…]()
+
 
 
 
