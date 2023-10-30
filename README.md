@@ -216,21 +216,21 @@ all:
           BRIDGE: br0
           AR:
             TYPE: IP4
-            IP: 172.20.0.100
+            IP: 192.168.200.100
             SIZE: 48
-          NETWORK_ADDRESS: 172.20.0.0
+          NETWORK_ADDRESS: 192.168.200.0
           NETWORK_MASK: 255.255.255.0
-          GATEWAY: 172.20.0.1
+          GATEWAY: 192.168.200.1
           DNS: 1.1.1.1
 
 frontend:
   hosts:
-    fe1: { ansible_host: 172.20.0.7 }
+    fe1: { ansible_host: 192.168.200.14 }
 
 node:
   hosts:
-    node1: { ansible_host: 172.20.0.8 }
-    node2: { ansible_host: 172.20.0.9 }
+    node1: { ansible_host: 192.168.200.10 }
+    node2: { ansible_host: 192.168.200.12 }
 
 ```
 
