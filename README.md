@@ -3,7 +3,7 @@
 First step:
 clone the repository and enter into the ubuntu directory
 ```
-https://github.com/javad-nemati/opennebula-automation.git
+git clone https://github.com/javad-nemati/opennebula-automation.git
 ```
 
 Remember: You must install the libvirt, ansible and git packages for the instalation
