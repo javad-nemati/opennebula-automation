@@ -29,13 +29,10 @@ virsh net-import netlab1.xml
 bash virt_install.sh
 ```
 
-in this example, we have four network interfaces (NICs) and are creating two bonds using them
-Creating a template is entirely up to you, but let's assume that the switch ports above the machines are tagged with VLAN 180 and VLAN 201
-the script to run and prepare the template vm, this step is interactive with the terminal to configure everything. e.g: name, ip, hostname…
+In this example, we have four network interfaces (NICs) and we're creating two bonds using them. The process of creating a template is flexible, but let's assume that the switch ports above the machines are tagged with VLAN 180 and VLAN 201. You'll run a script to prepare the template VM, which involves interactive configuration through the terminal for settings such as name, IP, hostname, and more.
 
 
-Inside the inventory/host_vars/localhost.yml file, you need to set up some variables. These variables might look like this:
-
+Inside the 'inventory/host_vars/localhost.yml' file, you will need to configure various variables. An example of how these variables might be structured is as follows:
 ```
 ---
 # DNS Session
