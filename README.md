@@ -14,8 +14,7 @@ libvirt 8
 ansible 2.10
 
 
-Create the template Download the ubuntu  22 for template configuration
-
+You need to download the Ubuntu 22 ISO and then create the template.
 
 inside of the util directory there are some files to help with:
 
