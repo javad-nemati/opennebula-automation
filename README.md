@@ -111,7 +111,6 @@ vm:
       gateway: 192.168.200.1
       dns: 192.168.200.1
 
-    net_connector3: "netlab1"
   - name: fe
     cpu: 2
     mem: 2048
