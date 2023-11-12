@@ -164,7 +164,6 @@ Deploying the vms
 
 
 ```
-cd create-vm-kvm/ubuntu
 ansible-playbook -i inventory/hosts create-vm-kvm/ubuntu_vms-4nic.yml
 ```
 you can destroy the vms with :
